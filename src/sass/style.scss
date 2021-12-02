@@ -1,0 +1,53 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;700&display=swap');
+@import 'bootstrap-reboot';
+
+@mixin glass {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+html {
+    box-sizing: border-box;
+    min-height: 100vh;
+    font-family: 'Karla', sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    background:
+        /* radial-gradient(50px circle at 100px 100px,
+            #ffffff 50%,
+            transparent 51%),
+        radial-gradient(75px circle at 10% 50%, #ffffff64 50%, transparent 51%),
+        radial-gradient(100px circle at 400px 20px, #000000 50%, transparent 51%),
+        radial-gradient(25px circle at 500px 250px, #a23b72 50%, transparent 51%),
+        radial-gradient(200px circle at 250px 200px, #00b1ff 50%, transparent 50.4%),
+        radial-gradient(10px circle at 50px 420px, #0079ff 50%, transparent 50.2%), */
+        linear-gradient(170deg, #2f6ed3 5%, #5095e4 20%, #5095e4 60%, #736ed3 95%);
+    /* background: linear-gradient(170deg, #d299c2, #fef9d7); */
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.app {
+    padding-top: 50px;
+    display: grid;
+    grid-template: auto / 200px auto;
+    gap: 30px;
+
+    &__main {
+        padding: 30px 15px;
+        @include glass;
+    }
+}
+
+@import 'components/nav'
