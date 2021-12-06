@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import {
 	BrowserRouter,
@@ -7,6 +8,7 @@ import {
 } from "react-router-dom";
 import Nav from './components/Nav/Nav';
 import Todo from './components/ToDoPage/Todo'
+import TodoContainer from "./components/ToDoPage/TodoContainer";
 
 //сделать вложенность рутов
 
@@ -21,7 +23,7 @@ function App(props) {
 						{/*<Route path="/dialogs" component={Dialogs}/>*/}
 						{/* <Route path="/profile" component={Profile} /> */}
 						<Routes>
-							<Route path='/todo' element={<Todo />} />
+							<Route path='/todo' element={<TodoContainer />} />
 							<Route path='/dialogs' />
 						</Routes>
 					</div>
