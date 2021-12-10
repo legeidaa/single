@@ -1,0 +1,64 @@
+.todo {
+	h2 {
+		color: #fff;
+		font-weight: 300;
+	}
+	textarea {
+		@include glass;
+		resize: none;
+		height: auto;
+		overflow: hidden;
+		padding: 5px;
+		width: 31%;
+		&::placeholder {
+			color: white;
+			padding-left: 5px;
+		}
+		+button {
+			display: block;
+			@include glass;
+			cursor: pointer;
+			padding: 5px 10px;
+			color: #fff;
+			&:hover {
+			}
+		}
+	}
+	ul {
+		@include glass;
+		padding: 10px 15px;
+		margin: 0;
+
+		li {
+			list-style: none;
+			display: flex;
+			padding: 10px 0;
+			color: #fff;
+			span {
+				margin-right: 5px;
+			}
+			button {
+				margin-left: auto;
+				margin-right: 0;
+				display: block;
+				cursor: pointer;
+				margin-bottom: 0;
+				border-radius: 100px;
+				@include glass;
+			}
+		}
+	}
+	[data-rbd-draggable-context-id="1"] {
+		left: auto !important;
+		top: auto !important;
+
+
+	}
+	&__wrap {
+		display: grid;
+		grid-template: auto / 1fr 1fr 1fr;
+		gap: 30px;
+		margin-bottom: 50px;
+	}
+
+}

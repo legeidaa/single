@@ -1,6 +1,6 @@
 import React from "react";
 import Todo from "./Todo";
-import {addToList, changeValue} from "../../redux/todo-reducer";
+import {addToList, changeValue, removeFromList, sort} from "../../redux/todo-reducer";
 import {connect} from "react-redux";
 import store from "../../redux/store";
 import ListItem from "./ListItem";
@@ -16,8 +16,13 @@ class TodoContainer extends React.Component{
                 inputValue={this.props.inputValue}
                 changeValue={this.props.changeValue}
                 addToList={this.props.addToList}
+                removeFromList={this.props.removeFromList}
                 onInputChange={this.onInputChange}
                 listItems={this.props.listItems}
+                toDoColumn={this.props.toDoColumn}
+                inProgressColumn={this.props.inProgressColumn}
+                doneColumn={this.props.doneColumn}
+                swapListItems={this.props.swapListItems}
             />
         )
     }
@@ -26,9 +31,10 @@ class TodoContainer extends React.Component{
 //mapStateToProps преобразует стейт в пропсы
 let mapStateToProps = (state) => {
     return {
-
         inputValue: state.toDoPage.inputValue,
-        listItems: state.toDoPage.listItems,
+        toDoColumn: state.toDoPage.toDoColumn,
+        inProgressColumn: state.toDoPage.inProgressColumn,
+        doneColumn: state.toDoPage.doneColumn,
     }
 }
 
@@ -44,6 +50,12 @@ let mapDispatchToProps = (dispatch) => {
         addToList: () => {
             dispatch(addToList())
         },
+        removeFromList: (id) => {
+            dispatch(removeFromList(id))
+        },
+        swapListItems: (droppableIdStart,droppableIdEnd,droppableIndexStart,droppableIndexEnd, draggableId) => {
+            dispatch(sort(droppableIdStart,droppableIdEnd,droppableIndexStart,droppableIndexEnd, draggableId))
+        }
     }
 }
 store.subscribe(() => console.info(store.getState()))
