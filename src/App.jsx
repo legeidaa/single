@@ -24,7 +24,8 @@ function App(props) {
 						{/* <Route path="/profile" component={Profile} /> */}
 						<Routes>
 							<Route path='/todo' element={<TodoContainer />} />
-							<Route path='/dialogs' />
+							<Route path='/interval-timer' />
+							<Route path='/2048' />
 						</Routes>
 					</div>
 

@@ -12,7 +12,6 @@ const Todo = (props) => {
 		if (!destination) {
 			return;
 		}
-		debugger
 		//droppableIdStart,droppableIdEnd,droppableIndexStart,droppableIndexEnd, draggableId
 		props.swapListItems(source.droppableId, destination.droppableId, source.index, destination.index, draggableId)
 	}

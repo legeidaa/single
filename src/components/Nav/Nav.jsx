@@ -9,7 +9,10 @@ const Nav = () => {
 				<NavLink to='/todo'>ToDo</NavLink>
 			</div>
 			<div>
-				<NavLink to='/dialogs'>Messages</NavLink>
+				<NavLink to='/interval-timer'>Interval timer</NavLink>
+			</div>
+			<div>
+				<NavLink to='/2048'>2048</NavLink>
 			</div>
 		</nav>
 	)
