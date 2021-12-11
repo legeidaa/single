@@ -50,8 +50,9 @@ let mapDispatchToProps = (dispatch) => {
         addToList: () => {
             dispatch(addToList())
         },
-        removeFromList: (id) => {
-            dispatch(removeFromList(id))
+        removeFromList: (id, column) => {
+
+            dispatch(removeFromList(id, column))
         },
         swapListItems: (droppableIdStart,droppableIdEnd,droppableIndexStart,droppableIndexEnd, draggableId) => {
             dispatch(sort(droppableIdStart,droppableIdEnd,droppableIndexStart,droppableIndexEnd, draggableId))

@@ -20,9 +20,9 @@ const Todo = (props) => {
 
 			<div className={'todo__wrap'}>
 				<DragDropContext onDragEnd={onDragEnd}>
-					<ToDoList column={props.toDoColumn}/>
-					<ToDoList column={props.inProgressColumn}/>
-					<ToDoList column={props.doneColumn}/>
+					<ToDoList column={props.toDoColumn} removeFromList={props.removeFromList}/>
+					<ToDoList column={props.inProgressColumn} removeFromList={props.removeFromList}/>
+					<ToDoList column={props.doneColumn} removeFromList={props.removeFromList}/>
 				</DragDropContext>
 			</div>
 			<h2>Add a task</h2>
@@ -42,7 +42,7 @@ export const ToDoList = (props) => {
 					{
 						(provided, snapshot)=> (
 							<div {...provided.droppableProps} ref={provided.innerRef} >
-								<ListItems column={props.column}/>
+								<ListItems column={props.column} removeFromList={props.removeFromList}/>
 								{provided.placeholder}
 							</div>
 						)
@@ -55,6 +55,7 @@ export const ToDoList = (props) => {
 
 export const ListItems = (props) => {
 	return (
+
 		props.column.listItems.map((item, index) => {
 			return (
 				<Draggable key={item.id}
@@ -64,9 +65,9 @@ export const ListItems = (props) => {
 					{provided => (
 						<div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} >
 							<li id={item.id} >
-								<span>{item.num + '.  '}</span>
+								<span>{index + 1 + '.  '}</span>
 								{item.value}
-								<button onClick={() => { props.removeFromList(item.id)}}>
+								<button onClick={() => { props.removeFromList(item.id, props.column)}}>
 									X
 								</button>
 							</li>

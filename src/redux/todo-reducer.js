@@ -3,6 +3,7 @@ import {nanoid} from "nanoid";
 let initialState = {
 	toDoColumn: {
 		name: 'ToDo',
+		key: 'toDoColumn',
 		id: nanoid(),
 		listItems: [
 			{num: 1, id: 112312, value: 'first task'},
@@ -12,6 +13,7 @@ let initialState = {
 	},
 	inProgressColumn: {
 		name: 'In progress',
+		key: 'inProgressColumn',
 		id: nanoid(),
 		listItems: [
 			{num: 1, id: 165756, value: 'first in progress'},
@@ -21,6 +23,7 @@ let initialState = {
 	},
 	doneColumn: {
 		name: 'Done',
+		key: 'doneColumn',
 		id: nanoid(),
 		listItems: [
 			{num: 1, id: 19877, value: 'first done'},
@@ -69,7 +72,7 @@ const SWAP_LIST_ITEMS = 'SWAP_LIST_ITEMS'
 //action creators. Вызов этой функции нужно передавать как аргумент в dispatch, а в actionCreator передавать необходимое значение (value)
 export const changeValue = (inputValue) => ( {type: CHANGE_INPUT_VALUE,inputValue})
 export const addToList = (item) => ({type: ADD_TO_LIST, item })
-export const removeFromList = (id) => ({type: REMOVE_FROM_LIST, id })
+export const removeFromList = (id, column) => ({type: REMOVE_FROM_LIST, id, column })
 export const sort = (droppableIdStart,droppableIdEnd,droppableIndexStart,droppableIndexEnd, draggableId) => (
 	{
 		type: SWAP_LIST_ITEMS,
@@ -97,6 +100,7 @@ export const toDoReducer = (state = initialState, action) => {
 			let newItem = {num: state.toDoColumn.listItems.length + 1, id: id, value: state.inputValue}
 
 			if (state.inputValue) {
+				debugger
 				return {
 					...state,
 					toDoColumn: {
@@ -111,11 +115,27 @@ export const toDoReducer = (state = initialState, action) => {
 			}
 		}
 		case REMOVE_FROM_LIST: {
-			//поменять тут значения
-			// return {
-			// 	...state,
-			// 	toDoColumn: state.toDoColumn.filter(item => item.id !== action.id)
-			// }
+			console.log(action.column)
+			let columnName = action.column.key
+			let newList = action.column.listItems
+
+
+			newList.forEach((item, index, array) => {
+				if(item.id === action.id) {
+					array.splice(index, 1)
+					console.log(array)
+					console.log(newList)
+					debugger
+				}
+			})
+			debugger
+			return ({
+				...state,
+				[columnName]: {
+					...state[columnName],
+					listItems: [...newList]
+				},
+			})
 		}
 		case SWAP_LIST_ITEMS: {
 			const {droppableIdStart, droppableIdEnd, droppableIndexStart, droppableIndexEnd, draggableId} = action.payload
@@ -131,6 +151,7 @@ export const toDoReducer = (state = initialState, action) => {
 				}
 				console.log(list)
 				const listItem = list.listItems.splice(droppableIndexStart, 1)
+				debugger
 				list.listItems.splice(droppableIndexEnd, 0, ...listItem)
 			}
 
